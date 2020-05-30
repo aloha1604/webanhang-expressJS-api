@@ -6,7 +6,8 @@ const app = express()
 const port = 3000
 
 //Router
-var bookRouter = require('./routes/book.route')
+
+var adminRouter = require('./routes/admin.route')
 
 
 app.get('/', (req, res) => res.send('Hello World!'))
@@ -18,7 +19,7 @@ app.get('/', (req, res) => res.send('Hello World!'))
 //     res.send(req.params.id);
 // })
 
-app.use('/books', bookRouter)
-
+// app.use('/books', bookRouter)
+app.use('/admin', adminRouter);
 
 app.listen(port, () => console.log(`Example app listening at http://localhost:${port}`))
