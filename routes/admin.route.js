@@ -8,7 +8,7 @@ const adminController = require('../controller/admin.controller')
 
 //router-get
 router.get('/', (res, req) => {
-    req.send('loi 404');
+    req.send(res.body.username);
 })
 router.get('/admin-get', adminController.getAdmin);
 router.get('/test', adminController.test);

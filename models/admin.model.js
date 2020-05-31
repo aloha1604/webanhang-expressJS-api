@@ -9,11 +9,57 @@ exports.getAdminById = (adminId, result) => {
             console.log("error:", err);
             result(null, err);
             return;
+        } else {
+            result(null, res);
         }
-        console.log("books :", res);
-        result(null, res);
+
     })
 }
+
+exports.getByAdminUserNameAndPassWord = (userAdmin, result) => {
+    const sql = "SELECT * FROM admin WHERE username=? AND password=?";
+    con.query(sql, [userAdmin.username, userAdmin.password], (err, res) => {
+        if (err) {
+            console.log("error:", err);
+            result(null, err);
+            return;
+        } else {
+            // console.log(res);
+            result(null, res);
+
+        }
+    })
+}
+
+exports.getRefreshTokenById = (admin_id, result) => {
+    const sql = "SELECT refreshtoken FROM admin WHERE admin_id=?";
+    con.query(sql, [admin_id], (err, res) => {
+        if (err) {
+            console.log("error:", err);
+            result(null, err);
+            return;
+        } else {
+
+            result(null, res);
+        }
+    })
+}
+
+exports.updateRefreshTokenAdmin = (refreshtoken, admin_id, result) => {
+    const sql = "UPDATE admin SET refreshtoken = ? WHERE admin_id = ?";
+    con.query(sql, [refreshtoken, admin_id], (err, res) => {
+        if (err) {
+            console.log("error:", err);
+            result(null, err);
+            return;
+        } else {
+
+            result(null, res);
+        }
+    })
+}
+
+
 
 exports.getAdmin = (result) => {
     const sql = "SELECT * FROM admin";
@@ -26,4 +72,5 @@ exports.getAdmin = (result) => {
         console.log("admin :", res);
         result(null, res);
     })
+    // const users = await db.query(sql);
 }
